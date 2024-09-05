@@ -7,8 +7,8 @@
 
     const {pagination} = storeToRefs(store)
 
-    function nextPage(toPage: any) {   
-        updatePagination(toPage)  
+    async function nextPage(toPage: any) {   
+        await updatePagination(toPage)  
     }
 </script>
 

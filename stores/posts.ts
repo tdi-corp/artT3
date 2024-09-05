@@ -29,6 +29,10 @@ const maxId = (dt: IPost[]) => {
     return lastItem === null ? 1 : (lastItem?.id ? lastItem.id + 1 : 101) 
 }
 
+const fakeLoading = (ms = 400) => new Promise((resolve, reject) =>{
+    setTimeout(() => resolve(''), ms)
+})
+
 export const usePostsStore = defineStore('postsStore', {
     
     state: (): IPostState => ({
@@ -55,13 +59,19 @@ export const usePostsStore = defineStore('postsStore', {
           
         },
         async createPost(formData: Omit<IPost, 'id'>) {
+            this.status = 'pending'
             const {title, body, userId} = formData
 
+            await fakeLoading()
+
             this.data.push({...formData, id: maxId(this.data)})
-            this.pagination.countPages = countPages(this.data.length, this.pagination.itemsPerPage)           
+            this.pagination.countPages = countPages(this.data.length, this.pagination.itemsPerPage) 
+            this.status = 'success'          
         },
-        updatePagination(page: number){
+        async updatePagination(page: number){
+
             this.status = 'pending'
+            await fakeLoading()
             this.pagination.page = page || this.pagination.page
             this.status = 'success'
         },
