@@ -2,37 +2,6 @@ import type {IPost, IPostState} from "~/types/posts";
 
 const config = useRuntimeConfig()
 
-const startEndIndexes = (page: number, itemsPerPage: number) => {
-
-    let startIndex = 0;
-    let endIndex = itemsPerPage;
-
-    if(page > 1) {
-        for(let i = 1; i < page; i++){
-            startIndex += itemsPerPage;
-            endIndex += itemsPerPage;
-        }
-    }
-    // console.log('page: ', page, 'itemsPerPage: ', itemsPerPage, 'startIndex: ', startIndex, 'endIndex', endIndex);
-
-    return {
-        startIndex: startIndex,
-        endIndex: endIndex
-    }
-}
-
-const countPages = (allItemsCount: number, itemsPerPage: number): number => Math.ceil(allItemsCount / itemsPerPage)
-
-
-const maxId = (dt: IPost[]) => {
-    const lastItem = dt.length > 0 ? dt[dt.length - 1] : null
-    return lastItem === null ? 1 : (lastItem?.id ? lastItem.id + 1 : 101) 
-}
-
-const fakeLoading = (ms = 400) => new Promise((resolve, reject) =>{
-    setTimeout(() => resolve(''), ms)
-})
-
 export const usePostsStore = defineStore('postsStore', {
     
     state: (): IPostState => ({

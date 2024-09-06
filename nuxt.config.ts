@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
+      title: 'Art Accessor Table',
       bodyAttrs: {
         class: "relative z-50 w-full flex-none text-sm font-semibold leading-6 text-slate-900"
       }

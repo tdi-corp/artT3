@@ -14,7 +14,9 @@
 
 <template >
     <!-- Pagination -->
-    <nav class="flex items-center gap-x-1" aria-label="Pagination">
+    <div>
+    </div>     
+    <nav class="sm:flex items-center gap-x-1" aria-label="Pagination">
         <PaginationButton v-if="pagination.page === 1" @page-by="nextPage" :toPage="pagination.page > 0 ? pagination.page - 1 : 1" :current-page="false" :isDisabled="true" type="prev"/>
         <PaginationButton v-else @page-by="nextPage" :toPage="pagination.page > 0 ? pagination.page - 1 : 1" :current-page="false" :isDisabled="false" type="prev"/>
 
